@@ -1,0 +1,13 @@
+Animations - 
+Smooth Scrolling - (locomotive js) 
+    attach loco scroll css 
+    attach locomotive scroll min js 
+    some code from logo github for js
+g
+
+
+gsap - 
+    attach gsap cdn 
+    
+scrolltrigger 
+

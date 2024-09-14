@@ -79,17 +79,32 @@ firstPageAnim();
 // jab mouse moove ho to ye pata karo ki mouse kahan par hi  jiska matlab hai ki mouse ki x and y psoition pata karo , ab mouse ki sy position ke badle us image ko show karo , move karte waqt rotate karo , move karte waqt rotate karo , and jaise jaise mouse tez chale waise waise rotation bhi tez ho jaaye 
 
 
-document.querySelectorAll(".elem")
-.forEach(function(elem){
-    elem.addEventListener("mousemove" , function(details){
-        
-        console.log( )
+document.querySelectorAll(".elem").forEach(function(elem){
+
+    var diffrot =0 ;
+    var rotate =0;
     
+    
+    elem.addEventListener("mouseleave" , function(details){
+        diffrot = details.clientX - rotate;
+        rotate = details.clientX;
+        
+        gsap.to(elem.querySelector("img"), {
+        opacity: 0,
+        ease : Power3,
+        duration:.3,
+       })
+    });
+    elem.addEventListener("mousemove" , function(details){
+        diffrot = details.clientX - rotate;
+        rotate = details.clientX;
+        
         gsap.to(elem.querySelector("img"), {
         opacity: 1,
-        ease : Power1,
+        ease : Power3,
         top:details.clientY - elem.getBoundingClientRect().top,
         left : details.clientX,
+        rotate : gsap.utils.clamp(-20 , 20 , diffrot*.5),
        })
-    })
+    });
 });
